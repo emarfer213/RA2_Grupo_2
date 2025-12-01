@@ -1,11 +1,12 @@
 import express from 'express'
+import os from 'node:os';
 
 const app = express();
 app.use(express.json());
 
 
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.send('Bienvenido a TextMaster API. Servidor: ' + os.hostname);
 })
 
 app.listen(3000)
