@@ -34,15 +34,10 @@ app.get('/transform', (req, res) => {
 
     let result;
 
-    switch (action) {
-        case 'upper':
-            result = text.toUpperCase();
-            break;
-        case 'lower':
-            result = text.toLowerCase();
-            break;
-        default:
-            return res.status(400).json({ error: "Invalid 'action' parameter" });
+    try {
+        result = transform(text, action);
+    } catch (error) {
+        return res.status(400).json({ error: error.message });
     }
 
     res.json({ result });
@@ -52,6 +47,17 @@ app.get('/transform', (req, res) => {
 
 export function reverse(text){
     return text.split("").reverse().join("");
+}
+
+export function transform(text, action){
+    switch (action) {
+        case 'upper':
+            return text.toUpperCase();
+        case 'lower':
+            return text.toLowerCase();
+        default:
+            throw new Error("Invalid 'action' parameter");
+    }
 }
 
 app.listen(3000)
