@@ -56,7 +56,7 @@ export function transform(text, action){
         case 'lower':
             return text.toLowerCase();
         default:
-            throw new Error("Invalid 'action' parameter");
+            return "Error: Invalid 'action' parameter";
     }
 }
 
