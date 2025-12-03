@@ -1,5 +1,6 @@
 import express from 'express'
 import morgan from 'morgan';
+import { log } from 'node:console';
 import os from 'node:os';
 
 const app = express();
@@ -22,6 +23,32 @@ app.get('/reverse', (req, res) => {
 
     res.json({ result: reverse(text) });
 });
+
+app.get('/transform', (req, res) => {
+    const { text, action } = req.query;
+
+    log({ text, action });
+    if (!text || !action) {
+        return res.status(400).json({ error: "Missing 'text' or 'action' parameter" });
+    }
+
+    let result;
+
+    switch (action) {
+        case 'upper':
+            result = text.toUpperCase();
+            break;
+        case 'lower':
+            result = text.toLowerCase();
+            break;
+        default:
+            return res.status(400).json({ error: "Invalid 'action' parameter" });
+    }
+
+    res.json({ result });
+
+});
+
 
 export function reverse(text){
     return text.split("").reverse().join("");
