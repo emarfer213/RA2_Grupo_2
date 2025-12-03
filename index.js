@@ -23,10 +23,9 @@ app.get('/reverse', (req, res) => {
     res.json({ result: reverse(text) });
 });
 
-function reverse(text){
+export function reverse(text){
     return text.split("").reverse().join("");
 }
 
 app.listen(3000)
 console.log('Server is running on http://localhost:3000');
-module.exports = {reverse}
