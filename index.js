@@ -24,6 +24,27 @@ app.get('/reverse', (req, res) => {
     res.json({ result: reverse(text) });
 });
 
+app.get('/analyze', (req, res) => {
+    const { text } = req.query;
+
+    if (!text) {
+        return res.status(400).json({ error: "Missing 'text' parameter" });
+    }
+
+    res.json({result: analyze(text)})
+})
+
+export function analyze(text) {
+    let textLength = text.length;
+    let wordCount = text.trim() === "" ? 0 : text.trim().split(/\s+/).length;
+    let hasNumbers = /\d/.test(text);
+
+    return {
+        length: textLength,
+        word_count: wordCount,
+        has_numbers: hasNumbers
+    }
+}
 app.get('/transform', (req, res) => {
     const { text, action } = req.query;
 
