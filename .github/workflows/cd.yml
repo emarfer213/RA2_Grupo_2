@@ -49,4 +49,4 @@ jobs:
     steps:
       - name: Lanzar el Deploy Hook de Render
         # 'secrets.RENDER_DEPLOY_HOOK' es el secreto que creamos en GitHub
-        run: curl "${{ secrets.RENDER_TOKEN }}"
+        run: curl "${{ secrets.RENDER_DEPLOY_HOOK }}"
