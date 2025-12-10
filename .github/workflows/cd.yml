@@ -41,10 +41,8 @@ jobs:
   #--- JOB 2: DEPLOY (CD) ---
   deploy:
     name: 2. Desplegar en Render (CD)
-    # Dependencia: Solo se ejecuta si 'build_and_push' ha terminado con éxito
+    # Dependencia: Solo se ejecuta si 'build_and_push' ha terminado con éxito 
     needs: build_and_push
-    # Condición: Solo se ejecuta si es un PUSH a 'master'
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     
     runs-on: ubuntu-latest
 
