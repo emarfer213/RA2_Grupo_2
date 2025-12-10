@@ -65,6 +65,13 @@ app.get('/transform', (req, res) => {
 
 });
 
+app.get('/health', (req, res) => {
+    res.json({
+        status: 'UP',
+        timeStamp: new Date(),
+        uptime: process.uptime()
+    });
+});
 
 export function reverse(text){
     return text.split("").reverse().join("");
