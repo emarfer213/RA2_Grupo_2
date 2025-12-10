@@ -4,7 +4,7 @@ name: CD Pipeline
 # Se ejecuta en pushes directos a 'master'
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 # 2. JOBS (Tareas)
 # Definimos los "trabajos" que se van a ejecutar
